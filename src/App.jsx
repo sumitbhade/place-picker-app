@@ -11,6 +11,7 @@ function App() {
   const modal = useRef();
   const selectedPlace = useRef();
   const [pickedPlaces, setPickedPlaces] = useState([]);
+  const [availablePlaces, setAvailablePlaces] = useState([]);
 
   //Example of Side Effect
 
@@ -20,6 +21,8 @@ function App() {
       position.coords.latitude,
       position.coords.longitude
     );
+
+    setAvailablePlaces(sortedPlaces);
   });
 
   function handleStartRemovePlace(id) {
@@ -74,7 +77,7 @@ function App() {
         />
         <Places
           title="Available Places"
-          places={AVAILABLE_PLACES}
+          places={availablePlaces}
           onSelectPlace={handleSelectPlace}
         />
       </main>
