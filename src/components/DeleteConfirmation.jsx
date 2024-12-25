@@ -1,20 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import ProgressBar from "./ProgressBar";
 
 const TIMER = 3000;
 
 export default function DeleteConfirmation({ onConfirm, onCancel }) {
-  const [remainingTime, setRemainingTime] = useState(TIMER);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setRemainingTime((prevTime) => prevTime - 10);
-    }, 10);
-    //useEffect Cleanup Function
-    return () => {
-      clearInterval(timer);
-    };
-  }, [onConfirm]);
-
   //(Problem) Even after selecting no it deletes the place.
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -38,7 +27,7 @@ export default function DeleteConfirmation({ onConfirm, onCancel }) {
           Yes
         </button>
       </div>
-      <progress value={remainingTime} max={TIMER} />
+      <ProgressBar timer={TIMER} />
     </div>
   );
 }
