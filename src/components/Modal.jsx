@@ -4,6 +4,12 @@ import { createPortal } from "react-dom";
 const Modal = forwardRef(function Modal({ children, open }) {
   const dialog = useRef();
 
+  if (open) {
+    dialog.current.showModal();
+  } else {
+    dialog.current.close();
+  }
+
   return createPortal(
     <dialog className="modal" ref={dialog}>
       {children}
