@@ -1,8 +1,16 @@
+import { useEffect } from "react";
+
 export default function DeleteConfirmation({ onConfirm, onCancel }) {
   //(Problem) Even after selecting no it deletes the place.
-  setTimeout(() => {
-    onConfirm();
-  }, 3000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onConfirm();
+    }, 3000);
+    //useEffect Cleanup Function
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <div id="delete-confirmation">
